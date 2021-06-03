@@ -1,12 +1,17 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose= require("mongoose");
+const path = require('path');
+
+
 
 const PORT = process.env.PORT || 3000;
 
 const db = require("./models");
+const { appendFile } = require("fs");
 
 const app = express();
+app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -14,34 +19,38 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
-
-app.get("/exercise", (req, res) => {
-
-  db.Workout.find({}, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(data);
-    }
-  });
-});
-// 1: Name: Send JSON response sorted by name in ascending order, e.g. GET "/name"
-
-app.get("/name", (req, res) => {
+//this will allow us to look at any of our workouts (seeded data only)
+app.get("/api/workouts", (req, res) => {
   db.Workout.find()
   .then(dbWorkout => {
     res.json(dbWorkout);
   })
-  .sort({name: 1}, (err, data) => {
+  .catch(err => {
+    res.json(err);
+  });
+});
+
+app.post("/api/workouts", (req, res) => {
+  db.Workout.create({})
+  .then(dbWorkout => {
+    res.json(dbWorkout);
+  })
+  .catch(err => {
+    res.json(err);
+  });
+});
+
+// 1: Name: Send JSON response sorted by name in ascending order, e.g. GET "/name"
+
+app.get("/name", (req, res) => {
+  db.Workout.find()
+  .sort({name: 1}), (err, data) => {
     if (err) {
       console.log(err);
     } else {
       res.json(data);
     }
-  })
-  .catch(err => {
-    res.json(err);
-  });
+  }
 });
 
 
@@ -56,6 +65,14 @@ app.get("/weight", (req, res) => {
     }
   })
 })
+
+app.get("/exercise", (req, res) =>{
+    res.sendFile(path.join(__dirname, "./public/exercise.html"));
+});
+
+app.get("/stats", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/stats.html"));
+});
 
 // Set the app to listen on port 3000
 
