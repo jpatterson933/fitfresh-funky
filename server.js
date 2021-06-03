@@ -3,12 +3,10 @@ const logger = require("morgan");
 const mongoose= require("mongoose");
 const path = require('path');
 
-
-
 const PORT = process.env.PORT || 3000;
 
 const db = require("./models");
-const { appendFile } = require("fs");
+
 
 const app = express();
 app.use(logger("dev"));
@@ -57,21 +55,21 @@ app.get("/name", (req, res) => {
 // 2: Weight: Send JSON response sorted by weight in descending order, , e.g. GET "/weight"
 
 app.get("/weight", (req, res) => {
-  db.Workout.find().sort({name: -1}, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(data);
-    }
-  })
+  db.Workout.find().sort({weight: -1})
 })
 
-app.get("/exercise", (req, res) =>{
+
+//our views files
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+app.get("/exercise", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/exercise.html"));
 });
 
 app.get("/stats", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/stats.html"));
+  res.sendFile(path.join(__dirname, "./public/stats.html"));
 });
 
 // Set the app to listen on port 3000
