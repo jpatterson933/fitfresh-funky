@@ -10,9 +10,11 @@ const workoutSchema = new Schema({
     exercises: [{
         type: {
             type: String,
+            trim: true,
         },
         name: {
             type: String,
+            trim: true,
         },
         duration: {
             type: Number,

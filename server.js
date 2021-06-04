@@ -8,14 +8,21 @@ const PORT = process.env.PORT || 3000;
 const db = require("./models");
 
 
+
 const app = express();
 app.use(logger("dev"));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
+  {   
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  });
+
 
 //this will allow us to look at any of our workouts (seeded data only)
 app.get("/api/workouts", (req, res) => {
@@ -40,7 +47,7 @@ app.post("/api/workouts", (req, res) => {
 
 // 1: Name: Send JSON response sorted by name in ascending order, e.g. GET "/name"
 
-app.get("/name", (req, res) => {
+app.get("api/workouts/name", (req, res) => {
   db.Workout.find()
   .sort({name: 1}), (err, data) => {
     if (err) {
@@ -54,16 +61,12 @@ app.get("/name", (req, res) => {
 
 // 2: Weight: Send JSON response sorted by weight in descending order, , e.g. GET "/weight"
 
-app.get("/weight", (req, res) => {
+app.get("api/workouts/weight", (req, res) => {
   db.Workout.find().sort({weight: -1})
 })
 
 
 //our views files
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
-});
-
 app.get("/exercise", (req, res) => {
     res.sendFile(path.join(__dirname, "./public/exercise.html"));
 });
