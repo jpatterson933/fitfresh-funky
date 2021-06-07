@@ -34,7 +34,7 @@ app.get("/api/workouts", (req, res) => {
     res.json(err);
   });
 });
-
+//this allows us to update a workout by its id
 app.put("/api/workouts/:id", ({ body, params }, res ) => {
   db.Workout.findByIdAndUpdate(
       params.id, { $push: { exercises: body } }, { new: true, runValidators: true }
@@ -60,7 +60,7 @@ app.post("/api/workouts", (req, res) => {
 // 1: Name: Send JSON response sorted by name in ascending order, e.g. GET "/name"
 
 app.get("api/workouts/name", (req, res) => {
-  db.Workout.find()
+  db.Workout.find({})
   .sort({name: 1}), (err, data) => {
     if (err) {
       console.log(err);
@@ -70,11 +70,20 @@ app.get("api/workouts/name", (req, res) => {
   }
 });
 
+app.delete("/api/workouts", ({ body }, res) => {
+  db.Workout.findByIdAndDelete(body.id)
+  .then(() => {
+      res.json(true);
+  })
+  .catch(err => {
+      res.json(err);
+  });
+});
 
 // 2: Weight: Send JSON response sorted by weight in descending order, , e.g. GET "/weight"
 
 app.get("api/workouts/weight", (req, res) => {
-  db.Workout.find().sort({weight: -1})
+  db.Workout.find({}).sort({weight: -1})
 })
 
 
