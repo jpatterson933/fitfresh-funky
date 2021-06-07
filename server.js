@@ -57,6 +57,20 @@ app.post("/api/workouts", (req, res) => {
   });
 });
 
+app.get("/api/workouts/range", (req, res) => {
+  db.Workout.find({})
+  .sort ({
+      _id: -1
+  })
+  .limit (7)
+  .then(dbWorkout => {
+      res.json(dbWorkout);
+  })
+  .catch(err => {
+      res.json(err);
+  });
+});
+
 // 1: Name: Send JSON response sorted by name in ascending order, e.g. GET "/name"
 
 app.get("api/workouts/name", (req, res) => {
