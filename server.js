@@ -22,7 +22,7 @@ mongoose.connect(URI,
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false,
-    // useCreateIndex: true,
+    useCreateIndex: true,
   });
 
 //Route that creates workouts
