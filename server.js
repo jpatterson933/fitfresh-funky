@@ -59,7 +59,7 @@ app.get("/api/workouts", (req, res) => {
 //this allows us to update a workout by its id
 app.put("/api/workouts/:id", ({ body, params }, res) => {
   db.Workout.findByIdAndUpdate(
-    params.id,
+    params._id,
     { $push: { exercises: body } }, 
     { new: true, runValidators: true }
   )
@@ -102,7 +102,7 @@ app.get("/api/workouts/range", (req, res) => {
 // });
 
 app.delete("/api/workouts", ({ body }, res) => {
-  db.Workout.findByIdAndDelete(body.id)
+  db.Workout.findByIdAndDelete(body._id)
     .then(() => {
       res.json(true);
     })
