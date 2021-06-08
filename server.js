@@ -34,16 +34,29 @@ app.get("/api/workouts", (req, res) => {
     res.json(err);
   });
 });
+
+app.get("/api/workouts/:id", (req, res) => {
+  db.Workout.findById(req.params.id)
+  .then(dbWorkout => {
+    res.json(dbWorkout)
+  })
+  .catch(err => {
+    res.json(err);
+  })
+})
 //this allows us to update a workout by its id
 app.put("/api/workouts/:id", ({ body, params }, res ) => {
   db.Workout.findByIdAndUpdate(
-      params.id, { $push: { exercises: body } }, { new: true, runValidators: true }
+      params.id, 
+      // { $push: { exercises: body } }, 
+      // { new: true, runValidators: true }
   )
   .then(dbWorkout => {
       res.json(dbWorkout);
   })
   .catch(err => {
       res.json(err);
+      console.log("are we catching an error? Yes if this shows up")
   });
 });
 
