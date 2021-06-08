@@ -1,64 +1,78 @@
-# fitfresh-funky
-A fitness tracker.
+# Fitness Tracker
 
-# Unit 17 NoSQL Homework: Workout Tracker
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-For this assignment, you'll create a workout tracker. You have already been provided with the front end code in the `Develop` folder. This assignment will require you to create Mongo database with a Mongoose schema and handle routes with Express.
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
-## User Story
+# Table of Contents
+1. [License MIT](#license-information)
+2. [Description](#application-description)
+3. [Installation](#installation-instructions)
+4. [Usage](#application-usage)
+5. [Contribution Guidelines](#contribution-guidelines)
+6. [Testing](#testing-instrutions)
+7. [Known Issues/Errors](#known-issues/errors)
+8. [Questions](#questions)
 
-* As a user, I want to be able to view create and track daily workouts. I want to be able to log multiple exercises in a workout on a given day. I should also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, I should be able to track my distance traveled.
+# License Information
 
-## Business Context
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A consumer will reach their fitness goals more quickly when they track their workout progress.
+[MIT License](https://www.mit.edu/~amini/LICENSE.md) Documentation
 
-## Acceptance Criteria
+Please refer to license documentation for any questions regarding reusing 
+this software or any code within this application.
 
-When the user loads the page, they should be given the option to create a new workout or continue with their last workout.
+[Back to Top](#table-of-contents)
 
-The user should be able to:
+# Application Description
 
-  * Add exercises to the most recent workout plan.
+The application is designed to track fitness activites using a mongo database to store information that the user inputs.
 
-  * Add new exercises to a new workout plan.
+[Back to Top](#table-of-contents)
 
-  * View the combined weight of multiple exercises from the past seven workouts on the `stats` page.
+# Installation Instructions
 
-  * View the total duration of each workout from the past seven workouts on the `stats` page.
+To install, git clone, run npm install, and the application should be on your device.
 
-> **Important:** Look into using a MongoDB aggregate function to dynamically add up and return the total duration for each workout. Check out the [MongoDB documentation on the $addFields](https://docs.mongodb.com/manual/reference/operator/aggregation/addFields/), the [MongoDB documentation on the $sum operator](https://docs.mongodb.com/manual/reference/operator/aggregation/sum/), and the [Mongoose documentation on aggregate functions](https://mongoosejs.com/docs/api.html#aggregate_Aggregate) to learn how it can be accomplished.
+[Back to Top](#table-of-contents)
 
-To deploy an application with a MongoDB database to Heroku, you'll need to set up a MongoDB Atlas account and connect a database from there to your application. Be sure to use the following guides for support:
+# Application Usage
 
-  * [Set Up MongoDB Atlas](../04-Important/MongoAtlas-Setup.md)
+The purpose of this application is to gain a relative understanding of the mongodb schema types, and how one would deploy an application with a mongo database to heroku.
 
-  * [Deploy with Heroku and MongoDB Atlas](../04-Important/MongoAtlas-Deploy.md)
+[Back to Top](#table-of-contents)
 
-## Commit Early and Often
+# Contribution Guidelines
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for the following two reasons:
+There are no contribution guidelines.
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills.
+[Back to Top](#table-of-contents)
 
-2. Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
+# Testing Instrutions
 
-Follow these guidelines for committing:
+There are no testing instructions.
 
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
+[Back to Top](#table-of-contents)
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
+# Known Issues/Errors
 
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
+There are serveral known issues. 
 
-* Test your application before you commit to ensure functionality at every step in the development process.
+1. The application does not save the users workouts. Actually, it saves the workouts however, it does not display when the stats page is loaded. This causes problems since I am not able to actually show that the two routes with range, name are in actual descending order for the homework. 
 
-We want you to have well over 200 commits by graduation, so commit early and often!
+2.  When adding a new workout, for some reason, the page reloads and you lose any information that has been added. I honestly have no clue why the issue exists.
 
-## Submission on BCS
+[Back to Top](#table-of-contents)
 
-You are required to submit the following:
+# Questions
 
-* The URL to the deployed application
+If you have any questions that have not been answered, please send me an email: jpatterson933@ucla.edu
 
-* The URL to the GitHub repository
+## Checkout My GitHub!
+
+[Back to Top](#table-of-contents)
+
+### [jpatterson933](https://github.com/jpatterson933)
+### [Live Application](https://glacial-retreat-24032.herokuapp.com/)
+### [GitHub Repository](https://github.com/jpatterson933/fitfresh-funky)
